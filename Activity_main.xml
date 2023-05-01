@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/map"
+        android:scaleType="centerCrop" />
+
+    <ImageView
+        android:id="@+id/shield"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/shield" />
+
+    <TextView
+        android:id="@+id/avenger_info_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shield"
+        android:layout_centerHorizontal="true"
+        android:padding="8dp"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/timestamp_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:padding="8dp"
+        android:textSize="16sp" />
+
+    <!-- Avenger ImageViews -->
+    <ImageView
+        android:id="@+id/black_panther"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="330dp"
+        android:src="@drawable/black_panther" />
+
+    <ImageView
+        android:id="@+id/black_widow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="380dp"
+        android:src="@drawable/black_widow" />
+
+    <ImageView
+        android:id="@+id/captain_america"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="320dp"
+        android:layout_marginTop="230dp"
+        android:src="@drawable/captain_america" />
+
+    <ImageView
+        android:id="@+id/hawkeye"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="400dp"
+        android:layout_marginTop="300dp"
+        android:src="@drawable/hawkeye" />
+
+    <ImageView
+        android:id="@+id/hulk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="480dp"
+        android:layout_marginTop="230dp"
+        android:src="@drawable/hulk" />
+
+    <ImageView
+        android:id="@+id/iron_man"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="600dp"
+        android:layout_marginTop="260dp"
+        android:src="@drawable/iron_man" />
+
+    <ImageView
+        android:id="@+id/thor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="300dp"
+        android:src="@drawable/thor" />
+
+</RelativeLayout>
