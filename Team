@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class Team {
+    private ArrayList<Avenger> avengers;
+
+    public Team() {
+        avengers = new ArrayList<>();
+    }
+
+    public void loadAvengers(String fileName) {
+        try {
+            Scanner scanner = new Scanner(new File(fileName));
+            while (scanner.hasNextLine()) {
+                String[] avengerData = scanner.nextLine().split(",");
+                String name = avengerData[0].trim();
+                double height = Double.parseDouble(avengerData[1].trim());
+                double weight = Double.parseDouble(avengerData[2].trim());
+                String alias = avengerData[3].trim();
+                String currentLocation = avengerData[4].trim();
+                boolean hasPowers =  Boolean . parseBoolean ( avengerData [ 5 ] . trim ( ) ) ;
+                Avenger avenger = new Avenger(name, height, weight, alias, currentLocation, hasPowers) {
+                    @Override
+                    public void setLocation(double newLat, double newLng) {
+
+                    }
+                };
+                avengers.add(avenger);
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Error loading Avengers data: " + e.getMessage());
+        }
+    }
+
+    public Avenger getAvenger(String alias) {
+        for (Avenger avenger : avengers) {
+            if (avenger.getAlias().equalsIgnoreCase(alias)) {
+                return avenger;
+            }
+        }
+        return null;
+    }
+}
