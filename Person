@@ -1,0 +1,29 @@
+package edu.utsa.cs3443.ypi057_lab6.Model;
+
+public abstract class Person {
+    private String name;
+    private double height;
+    private double weight;
+
+    public Person(String name, double height, double weight) {
+        this.name = name;
+        this.height = height;
+        this.weight = weight;
+    }
+
+    // Getters and setters
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public double getHeight() { return height; }
+    public void setHeight(double height) { this.height = height; }
+    public double getWeight() { return weight; }
+    public void setWeight(double weight) { this.weight = weight; }
+
+    // toString() method
+    @Override
+    public String toString() {
+        return "Name: " + name + ", Height: " + height + ", Weight: " + weight;
+    }
+
+    public abstract void setLocation(double newLat, double newLng);
+}
