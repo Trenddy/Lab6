@@ -1,0 +1,54 @@
+
+package edu.utsa.cs3443.ypi057_lab6.Controller;
+
+
+import android.content.Context;
+import android.util.Log;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+import edu.utsa.cs3443.ypi057_lab6.Model.Avenger;
+
+public class MainController {
+    private static final String TAG = "MainController";
+    private ArrayList<Avenger> avengers;
+
+    public MainController(Context context) {
+        loadAvengers(context);
+    }
+
+    public void setAvengers(ArrayList<Avenger> avengers) {
+        this.avengers = avengers;
+    }
+
+    void loadAvengers(Context context) {
+        avengers = new ArrayList<>();
+        try {
+            InputStream inputStream = context.getAssets().open("data(1).csv");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                String name = data[0];
+                int height = Integer.parseInt(data[1]);
+                int weight = Integer.parseInt(data[2]);
+                String alias = data[3];
+                double latitude = Double.parseDouble(data[4]);
+                double longitude = Double.parseDouble(data[5]);
+                boolean hasPowers = Boolean.parseBoolean(data[6]);
+                boolean isHero = Boolean.parseBoolean(data[7]);
+            }
+            reader.close();
+        } catch (IOException e) {
+            Log.e(TAG, "Error loading avengers from data file: " + e.getMessage());
+        }
+    }
+
+    public ArrayList<Avenger> getAvengers() {
+        return avengers;
+    }
+}
