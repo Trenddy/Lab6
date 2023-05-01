@@ -1,0 +1,35 @@
+package edu.utsa.cs3443.ypi057_lab6.Model;
+
+import android.os.Handler;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+public class AvengerTask implements Runnable {
+    private ArrayList<Avenger> avengers;
+    private Handler handler;
+
+    public AvengerTask(Handler handler, ArrayList<Avenger> avengers) {
+        this.handler = handler;
+        this.avengers = avengers;
+    }
+
+    @Override
+    public void run() {
+        Random random = new Random();
+        while (true) {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            for (Avenger avenger : avengers) {
+                double newLatitude = avenger.getLatitude() + random.nextDouble() / 100;
+                double newLongitude = avenger.getLongitude() + random.nextDouble() / 100;
+                avenger.setLatitude(newLatitude);
+                avenger.setLongitude(newLongitude);
+            }
+            handler.sendEmptyMessage(0);
+        }
+    }
+}
