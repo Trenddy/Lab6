@@ -1,0 +1,40 @@
+package edu.utsa.cs3443.ypi057_lab6.Model;
+
+public abstract class Avenger extends Person {
+    private String alias;
+    private double latitude;
+    private double longitude;
+    private boolean hasPowers;
+
+    public Avenger(String name, double height, double weight, String alias, double latitude, double longitude, boolean hasPowers) {
+        super(name, height, weight);
+        this.alias = alias;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.hasPowers = hasPowers;
+    }
+
+    public Avenger(String name, double height, double weight, String alias, String currentLocation, boolean hasPowers) {
+        super(name, height, weight);
+        this.alias = alias;
+        // TODO: parse currentLocation and set latitude and longitude
+        this.hasPowers = hasPowers;
+    }
+
+    // Getters and setters
+    public String getAlias() { return alias; }
+    public void setAlias(String alias) { this.alias = alias; }
+    public double getLatitude() { return latitude; }
+    public void setLatitude(double latitude) { this.latitude = latitude; }
+    public double getLongitude() { return longitude; }
+    public void setLongitude(double longitude) { this.longitude = longitude; }
+    public boolean hasPowers() { return hasPowers; }
+    public void setHasPowers(boolean hasPowers) { this.hasPowers = hasPowers; }
+
+    // toString() method
+    @Override
+    public String toString() {
+        return super.toString() + ", Alias: " + alias + ", Latitude: " + latitude + ", Longitude: " + longitude + ", Has Powers: " + hasPowers;
+    }
+}
+
