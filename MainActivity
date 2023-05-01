@@ -1,0 +1,77 @@
+package edu.utsa.cs3443.ypi057_lab6;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import edu.utsa.cs3443.ypi057_lab6.Controller.MainController;
+import edu.utsa.cs3443.ypi057_lab6.Model.Avenger;
+import edu.utsa.cs3443.ypi057_lab6.Model.AvengerTask;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private MainController mainController;
+    private TextView avengerInfoTextView;
+    private TextView timestampTextView;
+    private ImageView[] avengerImages;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        mainController = new MainController(this);
+
+        avengerInfoTextView = findViewById(R.id.avenger_info_text_view);
+        timestampTextView = findViewById(R.id.timestamp_text_view);
+
+        int[] avengerImageIds = {
+                R.id.black_panther, R.id.black_widow, R.id.captain_america,
+                R.id.hawkeye, R.id.hulk, R.id.iron_man, R.id.thor
+        };
+
+        avengerImages = new ImageView[avengerImageIds.length];
+
+        for (int i = 0; i < avengerImageIds.length; i++) {
+            avengerImages[i] = findViewById(avengerImageIds[i]);
+            avengerImages[i].setOnClickListener(this);
+        }
+
+        Handler handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                updateTimestamp();
+            }
+        };
+
+        AvengerTask avengerTask = new AvengerTask(handler, mainController.getAvengers());
+        new Thread(avengerTask).start();
+    }
+
+    @Override
+    public void onClick(View v) {
+        for (int i = 0; i < avengerImages.length; i++) {
+            if (v.getId() == avengerImages[i].getId()) {
+                updateAvengerInfo(mainController.getAvengers().get(i));
+                break;
+            }
+        }
+    }
+
+    private void updateAvengerInfo(Avenger avenger) {
+        avengerInfoTextView.setText(avenger.toString());
+    }
+
+    private void updateTimestamp() {
+        String currentDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
+        timestampTextView.setText("Last Updated: " + currentDateTime);
+    }
+}
